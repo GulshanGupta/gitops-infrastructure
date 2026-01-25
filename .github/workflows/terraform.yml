@@ -55,6 +55,9 @@ jobs:
             echo "AWS_ACCESS_KEY_ID is set correctly."
           fi
 
+      - name: "Test AWS Authentication"
+        run: aws sts get-caller-identity
+
       - name: "Terraform Init"
         id: init
         run: terraform init -backend-config="bucket=${BUCKET_TF_STATE}" 
