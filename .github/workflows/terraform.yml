@@ -82,11 +82,7 @@ jobs:
         id: init
         run: |
           echo "Initializing Terraform with backend bucket: ${BUCKET_TF_STATE}"
-          terraform init -backend-config="bucket=${BUCKET_TF_STATE}" || {
-            echo "Terraform init failed, checking S3 bucket access:"
-            aws s3 ls s3://${BUCKET_TF_STATE} || echo "Cannot access S3 bucket"
-            exit 1
-          } 
+          terraform init -backend-config="bucket=${BUCKET_TF_STATE}"
 
       - name: "Terraform format check"
         id: fmt
